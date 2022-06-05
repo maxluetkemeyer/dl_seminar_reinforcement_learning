@@ -1,0 +1,9 @@
+#core
+tensorflow
+gym
+numpy>=1.20
+pandas
+matplotlib
+
+#examples
+#flappy_bird_gym
