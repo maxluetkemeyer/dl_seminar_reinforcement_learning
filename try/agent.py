@@ -15,16 +15,13 @@ class Agent():
         if rate > random.random():
             # explore
             action = random.randrange(self.num_actions)
-            return tf.constant([action], dtype=tf.int32)
+            return tf.constant([action], dtype=tf.int64)
         else:
             # exploit
-            # with torch.no_grad():
-            #return policy_net(state).argmax(dim=1).item() 
 
             # get highest q value from model to select action
             # input is the state
             # use model only for inferrence and not for training
-            # turn of gradient tracking - info in blog
-
-            action = random.randrange(self.num_actions)
-            return tf.constant([action], dtype=tf.int32)
+            y_pred = policy_net(tf.expand_dims(state, 0), training=False)
+            t = tf.argmax(y_pred, axis=1)
+            return t
