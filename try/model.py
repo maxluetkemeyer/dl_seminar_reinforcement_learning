@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow import keras
+import tensorflow.keras as keras
 
 class DQN(keras.Model):
     def __init__(self, num_state_features, **kwargs):
