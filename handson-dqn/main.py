@@ -2,7 +2,8 @@ import tensorflow as tf
 import tensorflow.keras as keras
 import numpy as np
 import gym
-import matplotlib as plt
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 
 keras.backend.clear_session()
 tf.random.set_seed(42)
@@ -80,7 +81,7 @@ best_score = 0
 for episode in range(600):
     obs = env.reset()    
     for step in range(200):
-        env.render(mode="human")
+        #env.render(mode="human")
         epsilon = max(1 - episode / 500, 0.01)
         obs, reward, done, info = play_one_step(env, obs, epsilon)
         if done:
