@@ -15,6 +15,3 @@ class ReplayMemory():
             np.array([experience[field_index] for experience in batch])
             for field_index in range(5)]
         return states, actions, rewards, next_states, dones
-
-    def can_provide_sample(self, batch_size):
-        return len(self.memory) >= batch_size

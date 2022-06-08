@@ -1,4 +1,5 @@
 import numpy as np
+import random
 import tensorflow as tf
 
 class Agent():
@@ -11,11 +12,12 @@ class Agent():
         rate = self.strategy.get_exploration_rate(self.current_step)
         self.current_step += 1
 
-        if rate > np.random.rand():
+        if rate > random.random():
             # explore
             action = np.random.randint(low=0, high=self.num_actions)
-            return action
         else:
             # exploit
             Q_values = policy_model.predict(state[np.newaxis])
-            return np.argmax(Q_values[0])
+            action = np.argmax(Q_values[0])
+        
+        return action

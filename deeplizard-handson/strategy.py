@@ -8,3 +8,7 @@ class EpsilonGreedyStrategy():
 
     def get_exploration_rate(self, current_step):
         return self.end + (self.start - self.end) * math.exp(-1. * current_step * self.decay)
+
+class AlwaysExploitStrategy():
+    def get_exploration_rate(self, current_step):
+        return 0

@@ -90,7 +90,7 @@ for episode in range(600):
     if step >= best_score: # Not shown
         best_weights = model.get_weights() # Not shown
         best_score = step # Not shown
-    print("\rEpisode: {}, Steps: {}, eps: {:.3f}".format(episode, step + 1, epsilon), end="") # Not shown
+    print("Episode: {}, Steps: {}, eps: {:.3f}".format(episode, step + 1, epsilon)) # Not shown
     if episode > 50:
         training_step(batch_size)
 
