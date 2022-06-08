@@ -2,3 +2,4 @@ venv_rl/
 try/__pycache__
 venv
 deeplizard-handson/logs
+deeplizard-handson/__pycache__

@@ -21,3 +21,8 @@ class Agent():
             action = np.argmax(Q_values[0])
         
         return action
+
+    def getExplorationRate(self):
+        rate = self.strategy.get_exploration_rate(self.current_step)
+        return rate
+        

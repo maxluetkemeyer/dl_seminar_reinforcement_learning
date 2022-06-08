@@ -44,10 +44,15 @@ env.seed(42)
 def train_step():
     states, actions, rewards, next_states, dones = replay_memory.sample(batch_size)
 
-    next_Q_values = target_model.predict(next_states)
-    max_next_Q_values = np.max(next_Q_values, axis=1)
+    # Double DQN
+    next_Q_values = policy_model.predict(next_states)
+    best_next_actions = np.argmax(next_Q_values, axis=1)
+    next_mask = tf.one_hot(best_next_actions, n_actions).numpy()
+    next_best_q_values = (target_model.predict(next_states) * next_mask).sum(axis=1)
+    #max_next_Q_values = np.max(next_Q_values, axis=1)
     target_Q_values = (rewards +
-                    (1 - dones) * discount_rate * max_next_Q_values)
+                    (1 - dones) * discount_rate * next_best_q_values)
+
     target_Q_values = target_Q_values.reshape(-1, 1)
     mask = tf.one_hot(actions, n_actions)
     with tf.GradientTape() as tape:
@@ -59,14 +64,13 @@ def train_step():
 
 
 train_summary_writer = tf.summary.create_file_writer(log_dir)
-
 best_score = 0
 
 os.system('clear')
 for episode in range(1, n_episodes+1):
-    state = env.reset()    
+    state = env.reset() 
     for step in range(200):
-        #env.render(mode="human")
+        env.render(mode="human")
         
         action = agent.select_action(state, policy_model)
         next_state, reward, done, info = env.step(action)
@@ -88,8 +92,8 @@ for episode in range(1, n_episodes+1):
 
     if episode % target_update == 0:
         target_model.set_weights(policy_model.get_weights())
-        print("Episode: {}, Steps: {}, target_model weights updated".format(episode, step + 1))
+        print("Episode: {}, Steps: {}, Exploration Rate: {} target_model weights updated".format(episode, step + 1, agent.getExplorationRate()))
     else:
-        print("Episode: {}, Steps: {}".format(episode, step + 1))
+        print("Episode: {}, Steps: {}, Exploration Rate: {}".format(episode, step + 1, agent.getExplorationRate()))
     
 

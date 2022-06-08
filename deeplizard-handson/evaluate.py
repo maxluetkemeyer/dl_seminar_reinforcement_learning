@@ -1,6 +1,5 @@
 import tensorflow as tf
 import tensorflow.keras as keras
-import numpy as np
 import os
 import datetime
 
@@ -9,8 +8,6 @@ from strategy import AlwaysExploitStrategy
 from env import createEnviornment
 
 keras.backend.clear_session()
-tf.random.set_seed(42)
-np.random.seed(42)
 
 time_string = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 log_dir = "logs/" + time_string
@@ -25,8 +22,6 @@ env = createEnviornment()
 strategy = AlwaysExploitStrategy()
 agent = Agent(num_actions=n_actions, strategy=strategy)
 
-
-env.seed(42)
 
 train_summary_writer = tf.summary.create_file_writer(log_dir)
 
