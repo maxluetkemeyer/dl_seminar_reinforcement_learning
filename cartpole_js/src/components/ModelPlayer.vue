@@ -1,29 +1,34 @@
 <script setup>
-import Gym from "./Gym.vue";
+import GymEnv from "./GymEnv.vue";
 import ActionRender from "./ActionRender.vue";
 </script>
 
 <template>
-    <div>
-        <h1>Model Player</h1>
-        <Gym :actionCallback="actionCallback" :start="start" canvasId="model0" key="model0"/>
-        <ActionRender :action="action" key="model_action"/>
-    </div>
+  <div>
+    <h1>Model Player</h1>
+    <GymEnv
+      :actionCallback="actionCallback"
+      :start="start"
+      canvasId="model0"
+      key="model0"
+    />
+    <ActionRender :action="action" key="model_action" />
+  </div>
 </template>
 
 <script>
 export default {
   props: ["start"],
-  data(){
+  data() {
     return {
-        action: "",
-    }
+      action: "",
+    };
   },
   methods: {
-    actionCallback(){
-        this.action = Math.random() > 0.5 ? 1 : 0;
-        return this.action;
-    }
-  }
-}
+    actionCallback() {
+      this.action = Math.random() > 0.5 ? 1 : 0;
+      return this.action;
+    },
+  },
+};
 </script>
