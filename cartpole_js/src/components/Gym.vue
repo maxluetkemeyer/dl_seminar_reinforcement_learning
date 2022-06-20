@@ -5,7 +5,7 @@ import { CartPole, renderCartPole } from "./cartpole";
 <template>
     <div>
         <p>Step: {{ step }}, Done: {{ done }}</p>
-        <canvas width="500" ref="canvas" :id="canvasId"></canvas>
+        <canvas width="500" ref="canvas" :id="canvasId" :key="canvasId"></canvas>
     </div>
 </template>
 

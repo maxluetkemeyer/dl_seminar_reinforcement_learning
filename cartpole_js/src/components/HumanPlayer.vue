@@ -7,7 +7,7 @@ import ActionRender from "./ActionRender.vue";
     <div>
         <h1>Human Player</h1>
         <Gym :actionCallback="actionCallback" :start="start" canvasId="human" key="human"/>
-        <ActionRender :action="action" />
+        <ActionRender :action="action" key="human_action"/>
     </div>
 </template>
 
