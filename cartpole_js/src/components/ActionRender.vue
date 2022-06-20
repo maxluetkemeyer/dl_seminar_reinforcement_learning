@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="icon_container">
-      <span v-if="action == 0" class="active"> left </span>
-      <span v-else>left</span>
+      <i v-if="action == 0" class="fa-solid fa-left-long active"></i>
+      <i v-else class="fa-solid fa-left-long"></i>
     </div>
 
     <div class="icon_container">
-      <span v-if="action == 1" class="active"> right </span>
-      <span v-else>right</span>
+      <i v-if="action == 1" class="fa-solid fa-right-long active"></i>
+      <i v-else class="fa-solid fa-right-long"></i>
     </div>
   </div>
 </template>
@@ -18,7 +18,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+div {
+  display: flex;
+  justify-content: space-between;
+}
+
 span {
   display: inline;
   color: grey;
@@ -27,8 +32,13 @@ span {
 }
 
 .active {
+  font-size: 5rem;
   color: black;
-  font-weight: bold;
+}
+
+i {
+  font-size: 4rem;
+  color: grey;
 }
 
 .icon_container {

@@ -11,6 +11,7 @@ import ActionRender from "./ActionRender.vue";
       :step="step"
       canvasId="model0"
       key="model0"
+      :doneCallback="doneCallback"
     />
     <ActionRender :action="action" key="model_action" />
   </div>
@@ -18,7 +19,7 @@ import ActionRender from "./ActionRender.vue";
 
 <script>
 export default {
-  props: ["step"],
+  props: ["step", "doneCallback"],
   data() {
     return {
       action: 0,

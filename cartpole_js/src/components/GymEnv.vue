@@ -4,37 +4,38 @@ import { CartPole, renderCartPole } from "./cartpole";
 
 <template>
   <div>
-    <p>Step: {{ step }}, Done: {{ done }}</p>
+    <p>Step: {{ maxStep }}, Done: {{ done }}</p>
     <canvas width="500" ref="canvas" :id="canvasId" :key="canvasId"></canvas>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["step", "canvasId", "actionCallback"],
+  props: ["step", "canvasId", "actionCallback", "doneCallback"],
   data() {
     return {
       env: new CartPole(),
       done: false,
       canvas: null,
+      maxStep: 0,
     };
   },
   mounted() {
     this.canvas = document.getElementById(this.canvasId);
-    console.log(this.canvas);
     renderCartPole(this.env, this.canvas);
   },
   watch: {
     step() {
-      console.log("Step update " + this.step);
       if (this.done) return;
 
       const action = this.actionCallback(this.env.getStateTensor());
       this.env.update(action);
       renderCartPole(this.env, this.canvas);
+      this.maxStep++;
 
       if (this.env.isDone()) {
         this.done = true;
+        this.doneCallback();
       }
     },
   },
