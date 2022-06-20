@@ -103,6 +103,7 @@ export class CartPole {
  *   the rendering will happen.
  */
 export function renderCartPole(cartPole, canvas) {
+  console.log(canvas);
   if (!canvas.style.display) {
     canvas.style.display = "block";
   }

@@ -1,29 +1,34 @@
 <script setup>
-import HumanPlayer from './components/HumanPlayer.vue';
-import ModelPlayer from "./components/ModelPlayer.vue"
+import HumanPlayer from "./components/HumanPlayer.vue";
+import ModelPlayer from "./components/ModelPlayer.vue";
 </script>
 
 <template>
   <div>
-    <HumanPlayer :startCallback="startCallback" key="k1"/>
-    <div style="width: 20px;"></div>
-    <ModelPlayer :start="startModels" key="k2"/>
+    <HumanPlayer :step="step" key="k1" />
+    <div style="width: 40px"></div>
+    <ModelPlayer :step="step" key="k2" />
   </div>
+  <br />
+  <div @click="start">Start</div>
 </template>
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      startModels: false,
-    }
+      step: 0,
+    };
   },
   methods: {
-    startCallback(){
-      this.startModels = true;
-    }
-  }
-}
+    start() {
+      //const loop =
+      setInterval(() => {
+        this.step++;
+      }, 200);
+    },
+  },
+};
 </script>
 
 <style scoped>
