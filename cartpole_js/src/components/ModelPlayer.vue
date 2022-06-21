@@ -5,7 +5,7 @@ import ActionRender from "./ActionRender.vue";
 
 <template>
   <div>
-    <h1>Model Player</h1>
+    <h1>Random Policy</h1>
     <GymEnv
       :actionCallback="actionCallback"
       :step="step"
@@ -28,6 +28,7 @@ export default {
   methods: {
     actionCallback() {
       this.action = Math.random() > 0.5 ? 1 : 0;
+      //this.action = this.action == 0 ? 1 : 0;
       return this.action;
     },
   },

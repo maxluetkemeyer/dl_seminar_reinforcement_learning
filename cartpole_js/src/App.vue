@@ -39,7 +39,7 @@ export default {
         if (this.humanDone && this.modelDone) {
           clearInterval(loop);
         }
-      }, 80);
+      }, 90);
     },
     humanDoneCb() {
       this.humanDone = true;
@@ -96,6 +96,7 @@ body {
 #custom_console {
   font-size: 2rem;
   margin: 0;
+  padding-left: 30px;
 }
 
 #custom_console p {

@@ -4,7 +4,9 @@ import { CartPole, renderCartPole } from "./cartpole";
 
 <template>
   <div>
-    <p>Step: {{ maxStep }}, Done: {{ done }}</p>
+    <p class="my-color" :style="cssVars">
+      Step: {{ maxStep }}, Done: {{ done }}
+    </p>
     <canvas width="500" ref="canvas" :id="canvasId" :key="canvasId"></canvas>
   </div>
 </template>
@@ -39,11 +41,29 @@ export default {
       }
     },
   },
+  computed: {
+    cssVars() {
+      return {
+        "--button-bg-color": this.maxStep > 200 ? "green" : "black",
+      };
+    },
+  },
 };
 </script>
 
 <style scoped>
 canvas {
   border: 1px solid black;
+}
+
+p {
+  font-size: 2rem;
+}
+</style>
+
+<style lang="scss" scoped>
+.my-color {
+  color: var(--button-bg-color);
+  font-weight: bold;
 }
 </style>
