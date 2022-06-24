@@ -16,6 +16,10 @@ import ModelPlayer from "./components/ModelPlayer.vue";
 
 <script>
 export default {
+  components: {
+    HumanPlayer,
+    ModelPlayer,
+  },
   data() {
     return {
       step: 0,
@@ -25,6 +29,10 @@ export default {
   },
   methods: {
     async start() {
+      if (this.step > 0) {
+        location.reload();
+      }
+
       addToConsole("3");
       await delay(1000);
       addToConsole("2");

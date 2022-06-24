@@ -19,6 +19,11 @@ import ActionRender from "./ActionRender.vue";
 
 <script>
 export default {
+  name: "HumanPlayer",
+  components: {
+    GymEnv,
+    ActionRender,
+  },
   props: ["step", "doneCallback"],
   data() {
     return {

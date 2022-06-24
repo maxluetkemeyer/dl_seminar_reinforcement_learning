@@ -1,9 +1,5 @@
-<script setup>
-import { CartPole, renderCartPole } from "./cartpole";
-</script>
-
 <template>
-  <div>
+  <div class="finished" :style="cssVars">
     <p class="my-color" :style="cssVars">
       Step: {{ maxStep }}, Done: {{ done }}
     </p>
@@ -12,7 +8,10 @@ import { CartPole, renderCartPole } from "./cartpole";
 </template>
 
 <script>
+import { CartPole, renderCartPole } from "./cartpole";
+
 export default {
+  name: "GymEnv",
   props: ["step", "canvasId", "actionCallback", "doneCallback"],
   data() {
     return {
@@ -45,6 +44,7 @@ export default {
     cssVars() {
       return {
         "--button-bg-color": this.maxStep > 200 ? "green" : "black",
+        "--bg-color": this.done ? "lightgray" : "white",
       };
     },
   },
@@ -65,5 +65,9 @@ p {
 .my-color {
   color: var(--button-bg-color);
   font-weight: bold;
+}
+
+.finished {
+  background-color: var(--bg-color);
 }
 </style>
